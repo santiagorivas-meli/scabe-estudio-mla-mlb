@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es"><head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
@@ -81,22 +81,22 @@
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:1px;background:#1a1a1a">
         <div style="background:#111;border:1px solid #222;border-radius:12px;padding:20px 22px">
       <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#555;margin-bottom:6px">NMV Incremental</div>
-      <div style="font-size:28px;font-weight:900;color:#ffe600;letter-spacing:-.02em;line-height:1">282.2M ARS</div>
+      <div id="kpi-nmv-MLA" style="font-size:28px;font-weight:900;color:#ffe600;letter-spacing:-.02em;line-height:1">282.2M ARS</div>
       
     </div>
         <div style="background:#111;border:1px solid #222;border-radius:12px;padding:20px 22px">
       <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#555;margin-bottom:6px">NMV Generado</div>
-      <div style="font-size:28px;font-weight:900;color:#7db8ff;letter-spacing:-.02em;line-height:1">4.5B ARS</div>
+      <div id="kpi-gen-MLA" style="font-size:28px;font-weight:900;color:#7db8ff;letter-spacing:-.02em;line-height:1">4.5B ARS</div>
       
     </div>
         <div style="background:#111;border:1px solid #222;border-radius:12px;padding:20px 22px">
       <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#555;margin-bottom:6px">Uplift promedio</div>
-      <div style="font-size:28px;font-weight:900;color:#00a650;letter-spacing:-.02em;line-height:1">+19.4%</div>
+      <div id="kpi-upl-MLA" style="font-size:28px;font-weight:900;color:#00a650;letter-spacing:-.02em;line-height:1">+19.4%</div>
       
     </div>
         <div style="background:#111;border:1px solid #222;border-radius:12px;padding:20px 22px">
       <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#555;margin-bottom:6px">Optins totales</div>
-      <div style="font-size:28px;font-weight:900;color:#888;letter-spacing:-.02em;line-height:1">677K</div>
+      <div id="kpi-opt-MLA" style="font-size:28px;font-weight:900;color:#888;letter-spacing:-.02em;line-height:1">677K</div>
       
     </div>
       </div>
@@ -171,22 +171,22 @@
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:1px;background:#1a1a1a">
         <div style="background:#111;border:1px solid #222;border-radius:12px;padding:20px 22px">
       <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#555;margin-bottom:6px">NMV Incremental</div>
-      <div style="font-size:28px;font-weight:900;color:#ffe600;letter-spacing:-.02em;line-height:1">1.4M BRL</div>
+      <div id="kpi-nmv-MLB" style="font-size:28px;font-weight:900;color:#ffe600;letter-spacing:-.02em;line-height:1">1.4M BRL</div>
       
     </div>
         <div style="background:#111;border:1px solid #222;border-radius:12px;padding:20px 22px">
       <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#555;margin-bottom:6px">NMV Generado</div>
-      <div style="font-size:28px;font-weight:900;color:#7db8ff;letter-spacing:-.02em;line-height:1">27.7M BRL</div>
+      <div id="kpi-gen-MLB" style="font-size:28px;font-weight:900;color:#7db8ff;letter-spacing:-.02em;line-height:1">27.7M BRL</div>
       
     </div>
         <div style="background:#111;border:1px solid #222;border-radius:12px;padding:20px 22px">
       <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#555;margin-bottom:6px">Uplift promedio</div>
-      <div style="font-size:28px;font-weight:900;color:#00a650;letter-spacing:-.02em;line-height:1">+4.0%</div>
+      <div id="kpi-upl-MLB" style="font-size:28px;font-weight:900;color:#00a650;letter-spacing:-.02em;line-height:1">+4.0%</div>
       
     </div>
         <div style="background:#111;border:1px solid #222;border-radius:12px;padding:20px 22px">
       <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#555;margin-bottom:6px">Optins totales</div>
-      <div style="font-size:28px;font-weight:900;color:#888;letter-spacing:-.02em;line-height:1">1.6M</div>
+      <div id="kpi-opt-MLB" style="font-size:28px;font-weight:900;color:#888;letter-spacing:-.02em;line-height:1">1.6M</div>
       
     </div>
       </div>
@@ -268,7 +268,7 @@
         <th class="r" onclick="sc(this,10)">Precio prom.</th>
         <th onclick="sc(this,11)">Estado</th>
       </tr></thead>
-      <tbody><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+      <tbody><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="72905602.0" data-gen="155320229.0" data-opt="6627" data-uplift="51.15" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">TECH</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">ntbk</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -286,7 +286,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="56204541.0" data-gen="170719861.0" data-opt="10075" data-uplift="30.12" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HE</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">tv</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -304,7 +304,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="54643895.0" data-gen="316775027.0" data-opt="28532" data-uplift="16.59" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">TECH</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">smrt</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -322,7 +322,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="33234714.0" data-gen="61702259.0" data-opt="5406" data-uplift="61.9" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">TECH</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">tablets</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -340,7 +340,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="28907175.0" data-gen="289179064.0" data-opt="92732" data-uplift="8.06" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">FASH</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">snkrs</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -358,7 +358,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="28026833.0" data-gen="55616391.0" data-opt="2173" data-uplift="88.53" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">TECH</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">printers</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -376,7 +376,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="25794282.0" data-gen="35147142.0" data-opt="2132" data-uplift="825.87" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">TECH</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">dsktp</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -394,7 +394,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="18598001.0" data-gen="242490342.0" data-opt="37683" data-uplift="5.16" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HE</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">kitchen</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -412,7 +412,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='transparent'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="18025626.0" data-gen="22718043.0" data-opt="2909" data-uplift="0" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='transparent'">
       <td style="padding:12px 14px;background:transparent">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">TECH</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">dsktp</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -430,7 +430,7 @@
       <td style="padding:12px 14px;background:transparent">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="12214928.0" data-gen="110658346.0" data-opt="61779" data-uplift="8.2" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">FASH</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">snkrs</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -448,7 +448,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="11942578.0" data-gen="79197120.0" data-opt="8825" data-uplift="11.04" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HEALTH</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">spsupl</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -466,7 +466,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="11812130.0" data-gen="108618052.0" data-opt="8992" data-uplift="7.91" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HE</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">builtin</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -484,7 +484,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="8309089.0" data-gen="79032811.0" data-opt="17048" data-uplift="8.05" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HEALTH</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">spsupl</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -502,7 +502,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="7437485.0" data-gen="148126467.0" data-opt="10009" data-uplift="3.23" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HE</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">tv</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -520,7 +520,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="6491708.0" data-gen="103238870.0" data-opt="26769" data-uplift="3.19" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">CONST</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">pwrtls</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -538,7 +538,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="6421263.0" data-gen="8391364.0" data-opt="565" data-uplift="100.47" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HE</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">cooling</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -556,7 +556,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="6187241.0" data-gen="31674184.0" data-opt="5303" data-uplift="17.98" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HEALTH</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">healthsupl</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -574,7 +574,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="6141421.0" data-gen="73206525.0" data-opt="15222" data-uplift="5.35" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">BEAUT</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">beautelec</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -592,7 +592,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="4990840.0" data-gen="53174137.0" data-opt="14167" data-uplift="5.15" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HE</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">hsclean</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -610,7 +610,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="4689301.0" data-gen="61614080.0" data-opt="23151" data-uplift="4.22" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HE</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">kitchen</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -628,7 +628,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="4597520.0" data-gen="18535200.0" data-opt="8556" data-uplift="21.3" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">SPORT</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">camping</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -646,7 +646,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="4441546.0" data-gen="228583109.0" data-opt="34616" data-uplift="1.24" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">CONST</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">pwrtls</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -664,7 +664,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="3804772.0" data-gen="18913727.0" data-opt="1444" data-uplift="19.76" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">ENTERT</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">micr</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -682,7 +682,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="3275220.0" data-gen="27887093.0" data-opt="18842" data-uplift="11.19" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">FURN</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">bdrmtxt</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -700,7 +700,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="2312354.0" data-gen="6802576.0" data-opt="551" data-uplift="26.6" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HE</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">builtin</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -718,7 +718,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="2087744.0" data-gen="23257882.0" data-opt="1217" data-uplift="9.13" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">CPG</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">infants</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -736,7 +736,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="1798616.0" data-gen="41707044.0" data-opt="3621" data-uplift="2.93" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HE</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">builtin</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -754,7 +754,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="1286808.0" data-gen="20933280.0" data-opt="1998" data-uplift="5.05" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HE</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">refrig</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -772,7 +772,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="1036871.0" data-gen="38158609.0" data-opt="2285" data-uplift="1.8" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HE</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">cooling</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -790,7 +790,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="1024293.0" data-gen="6810304.0" data-opt="2715" data-uplift="11.01" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">TYB</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">brstfeed</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -808,7 +808,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="756859.0" data-gen="10705366.0" data-opt="1467" data-uplift="4.3" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">TYB</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">strollers</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -826,7 +826,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="428439.0" data-gen="10145544.0" data-opt="3136" data-uplift="24.96" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">VPAA</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">motorepl</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -844,7 +844,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="409402.0" data-gen="3765432.0" data-opt="515" data-uplift="9.88" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">TYB</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">strollers</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -862,7 +862,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-28175.0" data-gen="5194716.0" data-opt="3127" data-uplift="-3.88" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">VPAA</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">motorepl</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -880,7 +880,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-60919.0" data-gen="17456709.0" data-opt="5860" data-uplift="-0.33" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">FURN</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">bdrmtxt</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -898,7 +898,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-62129.0" data-gen="3265446.0" data-opt="471" data-uplift="-1.28" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">ENTERT</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">micr</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -916,7 +916,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-64975.0" data-gen="3030441.0" data-opt="641" data-uplift="-2.92" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">BEAUT</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">esthetic</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -934,7 +934,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-170082.0" data-gen="10345258.0" data-opt="6507" data-uplift="-0.98" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">FASH</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">bagpack</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -952,7 +952,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-260067.0" data-gen="15985033.0" data-opt="4219" data-uplift="-1.02" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HE</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">tvacc</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -970,7 +970,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-359266.0" data-gen="8513426.0" data-opt="4469" data-uplift="-3.97" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HE</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">tvacc</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -988,7 +988,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-660169.0" data-gen="264587034.0" data-opt="19363" data-uplift="-0.2" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HE</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">laundry</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1006,7 +1006,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-1020670.0" data-gen="24068439.0" data-opt="1351" data-uplift="-3.14" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HE</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">tv</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1024,7 +1024,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-1677227.0" data-gen="28443998.0" data-opt="2373" data-uplift="-5.18" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">BEAUT</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">esthetic</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1042,7 +1042,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-2112257.0" data-gen="11558999.0" data-opt="766" data-uplift="-14.62" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">CPG</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">infants</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1060,7 +1060,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-2164842.0" data-gen="13401956.0" data-opt="5101" data-uplift="-7.68" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">FASH</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">boots</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1078,7 +1078,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-2586007.0" data-gen="23419601.0" data-opt="2306" data-uplift="-6.96" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HEALTH</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">healthsupl</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1096,7 +1096,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-2628801.0" data-gen="20333399.0" data-opt="12629" data-uplift="-9.78" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">SPORT</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">camping</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1114,7 +1114,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-2977150.0" data-gen="107457780.0" data-opt="11929" data-uplift="-1.65" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HE</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">hsclean</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1132,7 +1132,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-3485980.0" data-gen="23380454.0" data-opt="3636" data-uplift="-10.6" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">TYB</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">brstfeed</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1150,7 +1150,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-4411442.0" data-gen="26098931.0" data-opt="9796" data-uplift="-8.58" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">FASH</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">boots</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1168,7 +1168,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-5055145.0" data-gen="183409330.0" data-opt="25986" data-uplift="-1.93" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HE</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">heating</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1186,7 +1186,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-5721724.0" data-gen="43709109.0" data-opt="1737" data-uplift="-10.05" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">VPAA</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">autotires</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1204,7 +1204,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-5830522.0" data-gen="38230296.0" data-opt="2008" data-uplift="-13.12" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">TECH</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">printers</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1222,7 +1222,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-5972736.0" data-gen="10994782.0" data-opt="8877" data-uplift="-28.09" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">FASH</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">bagpack</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1240,7 +1240,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-6642268.0" data-gen="140880048.0" data-opt="12771" data-uplift="-2.93" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HE</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">laundry</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1258,7 +1258,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-8834692.0" data-gen="48108300.0" data-opt="3033" data-uplift="-14.02" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">TECH</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">tablets</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1276,7 +1276,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-9541537.0" data-gen="37252871.0" data-opt="2057" data-uplift="-16.05" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">VPAA</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">autotires</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1294,7 +1294,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-10379959.0" data-gen="32741631.0" data-opt="2543" data-uplift="-19.79" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">TECH</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">smrt</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1312,7 +1312,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-10853342.0" data-gen="334506689.0" data-opt="26679" data-uplift="-2.46" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HE</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">heating</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1330,7 +1330,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-11834533.0" data-gen="65069358.0" data-opt="6302" data-uplift="-12.79" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HE</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">refrig</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1348,7 +1348,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-29236957.0" data-gen="173941491.0" data-opt="17323" data-uplift="-11.05" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">TECH</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">smrt</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1366,7 +1366,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLA" data-nmv="-33392965.0" data-gen="142591435.0" data-opt="11730" data-uplift="-14.5" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(242,61,79,.04)'">
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">TECH</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">ntbk</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e6a817;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1384,7 +1384,7 @@
       <td style="padding:12px 14px;background:rgba(242,61,79,.04)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLB" data-nmv="776534.0" data-gen="5694140.0" data-opt="95976" data-uplift="10.48" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HIGH ASP</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">high</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3483fa;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1402,7 +1402,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLB" data-nmv="189507.0" data-gen="9338626.0" data-opt="315121" data-uplift="2.5" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">HE</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">he</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3483fa;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1420,7 +1420,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLB" data-nmv="172595.0" data-gen="3492574.0" data-opt="601328" data-uplift="4.01" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">LOW ASP</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">low</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#777;font-weight:700">low</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3483fa;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1438,7 +1438,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLB" data-nmv="147195.0" data-gen="5202306.0" data-opt="226617" data-uplift="3.03" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">MEDIA ASP</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">media</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#f5f5f5;color:#888;font-weight:700">media</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3483fa;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1456,7 +1456,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLB" data-nmv="101433.0" data-gen="3412427.0" data-opt="313959" data-uplift="2.64" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">F&H</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">f&h</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3483fa;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1474,7 +1474,7 @@
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <span style="font-size:10px;padding:2px 8px;border-radius:3px;font-weight:600;background:rgba(0,166,80,.12);color:#00a650">ACTIVE</span>
       </td>
-    </tr><tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
+    </tr><tr style="border-bottom:1px solid #1a1a1a" data-site="MLB" data-nmv="11463.0" data-gen="596487.0" data-opt="19550" data-uplift="1.63" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='rgba(0,166,80,.03)'">
       <td style="padding:12px 14px;background:rgba(0,166,80,.03)">
         <div style="font-size:13px;line-height:1.45;margin-bottom:4px"><span style="font-weight:700;color:#f0f0f0">CI</span> <span style="color:#888">&bull;</span> <span style="color:#ccc">ci</span> <span style="font-size:10px;padding:1px 6px;border-radius:3px;background:#e8f0fe;color:#3483fa;font-weight:700">high</span></div>
         <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3483fa;margin-right:4px"></span><span style="font-size:10px;color:#444">ID </span></div>
@@ -1502,32 +1502,6 @@
   </div>
 </div>
 
-<div style="margin-top:24px;background:#0d0d0d;border:1px solid #222;border-radius:16px;padding:28px 32px">
-  <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:20px">Conclusiones</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-    <div style="display:flex;gap:14px;align-items:flex-start;padding:18px;background:#111;border-radius:12px;border-left:3px solid #00a650">
-      <div style="font-size:22px;flex-shrink:0">&#9989;</div>
-      <div><div style="font-size:13px;font-weight:700;color:#f0f0f0;margin-bottom:5px">High ASP supera consistentemente a Low ASP</div>
-      <div style="font-size:12px;color:#666;line-height:1.6">En MLA, High ASP promedia +13,5% de uplift vs +0,9% de Low ASP. El cup&oacute;n cambia la decisi&oacute;n de compra en tickets altos. En Low ASP el comprador hubiera comprado igual.</div></div>
-    </div>
-    <div style="display:flex;gap:14px;align-items:flex-start;padding:18px;background:#111;border-radius:12px;border-left:3px solid #3483fa">
-      <div style="font-size:22px;flex-shrink:0">&#127463;&#127479;</div>
-      <div><div style="font-size:13px;font-weight:700;color:#f0f0f0;margin-bottom:5px">MLB tiene 0% de campa&ntilde;as negativas</div>
-      <div style="font-size:12px;color:#666;line-height:1.6">Las 6 campa&ntilde;as en Brasil son todas positivas. El formato funciona mejor que en MLA, posiblemente por diferencias en el perfil de compra y la respuesta al est&iacute;mulo en cada mercado.</div></div>
-    </div>
-    <div style="display:flex;gap:14px;align-items:flex-start;padding:18px;background:#111;border-radius:12px;border-left:3px solid #ffe600">
-      <div style="font-size:22px;flex-shrink:0">&#9889;</div>
-      <div><div style="font-size:13px;font-weight:700;color:#f0f0f0;margin-bottom:5px">HE y TECH concentran el NMV en MLA</div>
-      <div style="font-size:12px;color:#666;line-height:1.6">Electrodom&eacute;sticos y Tecnolog&iacute;a acumulan el 76% del NMV incremental de MLA. Son las categor&iacute;as donde el cup&oacute;n tiene mayor impacto real sobre la conversi&oacute;n.</div></div>
-    </div>
-    <div style="display:flex;gap:14px;align-items:flex-start;padding:18px;background:#111;border-radius:12px;border-left:3px solid #f23d4f">
-      <div style="font-size:22px;flex-shrink:0">&#128680;</div>
-      <div><div style="font-size:13px;font-weight:700;color:#f0f0f0;margin-bottom:5px">45% de campa&ntilde;as MLA con uplift negativo</div>
-      <div style="font-size:12px;color:#666;line-height:1.6">VPAA destruye valor (-28,9% uplift promedio). Las campa&ntilde;as negativas tienen 3,5x menos tr&aacute;fico &mdash; bajo volumen significa sin masa cr&iacute;tica para que el cup&oacute;n sea efectivo.</div></div>
-    </div>
-  </div>
-</div>
-<footer style="text-align:center;font-size:11px;color:#333;margin-top:24px">SCABE MLA &amp; MLB &nbsp;&middot;&nbsp; Incrementalidad A/B &nbsp;&middot;&nbsp; Mayo 2026</footer>
 </div>
 <footer>SCABE MLA &amp; MLB &nbsp;&middot;&nbsp; Incrementalidad A/B &nbsp;&middot;&nbsp; BT_MKP_BENEFITS_UPLIFT_SESSIONS_METRICS_DLY &nbsp;&middot;&nbsp; Mayo 2026</footer>
 
@@ -1545,6 +1519,7 @@ function applyF(){
     if(show)n++;
   });
   document.getElementById('cnt').textContent=n+' campa&#241;as';
+  recalcKPIs();
 }
 function fSite(s,el){
   cS=s;
@@ -1556,6 +1531,41 @@ function fUp(u,el){
   document.querySelectorAll('.filters .f-btn').forEach(function(b){if(b.textContent==='Positivas'||b.textContent==='Negativas')b.classList.remove('active');});
   if(cU!=='all')el.classList.add('active');
   applyF();
+}
+function fmtLC(v){
+  var x=parseFloat(v)||0;
+  if(Math.abs(x)>=1e9) return (x/1e9).toFixed(1)+'B LC';
+  if(Math.abs(x)>=1e6) return (x/1e6).toFixed(1)+'M LC';
+  if(Math.abs(x)>=1e3) return Math.round(x/1e3)+'K LC';
+  return Math.round(x)+' LC';
+}
+function fmtN(v){
+  var x=parseFloat(v)||0;
+  if(Math.abs(x)>=1e6) return (x/1e6).toFixed(1)+'M';
+  if(Math.abs(x)>=1e3) return Math.round(x/1e3)+'K';
+  return Math.round(x).toString();
+}
+function recalcKPIs(){
+  ['MLA','MLB'].forEach(function(s){
+    var rows=[...document.querySelectorAll('#tbl tbody tr[data-site="'+s+'"]')].filter(function(r){return r.style.display!=='none';});
+    var nmv=0,gen=0,opt=0,upls=[],pos=0,neg=0;
+    rows.forEach(function(r){
+      nmv+=parseFloat(r.dataset.nmv)||0;
+      gen+=parseFloat(r.dataset.gen)||0;
+      opt+=parseFloat(r.dataset.opt)||0;
+      var u=parseFloat(r.dataset.uplift);
+      if(!isNaN(u)&&r.dataset.uplift!='0'){ upls.push(u); if(u>0)pos++;else neg++;}
+    });
+    var avgU=upls.length?upls.reduce(function(a,b){return a+b;},0)/upls.length:0;
+    var nmvEl=document.getElementById('kpi-nmv-'+s);
+    var genEl=document.getElementById('kpi-gen-'+s);
+    var uplEl=document.getElementById('kpi-upl-'+s);
+    var optEl=document.getElementById('kpi-opt-'+s);
+    if(nmvEl) nmvEl.textContent=fmtLC(nmv);
+    if(genEl) genEl.textContent=fmtLC(gen);
+    if(uplEl){ uplEl.textContent=(avgU>0?'+':'')+avgU.toFixed(1)+'%'; uplEl.style.color=avgU>=0?'#00a650':'#f23d4f';}
+    if(optEl) optEl.textContent=fmtN(opt);
+  });
 }
 function sc(th,col){
   if(sI===col)sD*=-1;else{sI=col;sD=-1;}
@@ -1571,4 +1581,30 @@ function sc(th,col){
   }).forEach(function(r){tb.appendChild(r);});
 }
 </script>
+<div style="margin-top:24px;background:#0d0d0d;border:1px solid #222;border-radius:16px;padding:28px 32px">
+  <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:20px">Conclusiones</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div style="display:flex;gap:14px;align-items:flex-start;padding:18px;background:#111;border-radius:12px;border-left:3px solid #00a650">
+      <div style="font-size:22px;flex-shrink:0">&#9989;</div>
+      <div><div style="font-size:13px;font-weight:700;color:#f0f0f0;margin-bottom:5px">High ASP supera consistentemente a Low ASP</div>
+      <div style="font-size:12px;color:#666;line-height:1.6">En MLA, High ASP promedia +13,5% de uplift vs +0,9% de Low ASP. El cup&oacute;n cambia la decisi&oacute;n de compra en tickets altos.</div></div>
+    </div>
+    <div style="display:flex;gap:14px;align-items:flex-start;padding:18px;background:#111;border-radius:12px;border-left:3px solid #3483fa">
+      <div style="font-size:22px;flex-shrink:0">&#127463;&#127479;</div>
+      <div><div style="font-size:13px;font-weight:700;color:#f0f0f0;margin-bottom:5px">MLB tiene 0% de campa&ntilde;as negativas</div>
+      <div style="font-size:12px;color:#666;line-height:1.6">Las 6 campa&ntilde;as en Brasil son todas positivas. El formato funciona mejor que en MLA en todos los verticales.</div></div>
+    </div>
+    <div style="display:flex;gap:14px;align-items:flex-start;padding:18px;background:#111;border-radius:12px;border-left:3px solid #ffe600">
+      <div style="font-size:22px;flex-shrink:0">&#9889;</div>
+      <div><div style="font-size:13px;font-weight:700;color:#f0f0f0;margin-bottom:5px">HE y TECH concentran el NMV en MLA</div>
+      <div style="font-size:12px;color:#666;line-height:1.6">Electrodom&eacute;sticos y Tecnolog&iacute;a acumulan el 76% del NMV incremental de MLA. Son las categor&iacute;as con mayor impacto real.</div></div>
+    </div>
+    <div style="display:flex;gap:14px;align-items:flex-start;padding:18px;background:#111;border-radius:12px;border-left:3px solid #f23d4f">
+      <div style="font-size:22px;flex-shrink:0">&#128680;</div>
+      <div><div style="font-size:13px;font-weight:700;color:#f0f0f0;margin-bottom:5px">45% de campa&ntilde;as MLA con uplift negativo</div>
+      <div style="font-size:12px;color:#666;line-height:1.6">VPAA destruye valor (-28,9% uplift promedio). Bajo volumen de tr&aacute;fico = sin masa cr&iacute;tica para que el cup&oacute;n sea efectivo.</div></div>
+    </div>
+  </div>
+</div>
+<footer style="text-align:center;font-size:11px;color:#333;margin-top:24px">SCABE MLA &amp; MLB &nbsp;&middot;&nbsp; Incrementalidad A/B &nbsp;&middot;&nbsp; Mayo 2026</footer>
 </body></html>

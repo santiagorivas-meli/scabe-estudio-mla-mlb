@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8"/>
+<title>SCABE MLA &amp; MLB &mdash; Estudio de incrementalidad</title>
+<style>
+:root{--y:#ffe600;--b:#3483fa;--g:#00a650;--r:#f23d4f;--o:#ff7733;
+  --bg:#080808;--s1:#0f0f0f;--s2:#161616;--s3:#1e1e1e;--brd:#1e1e1e;--brd2:#2a2a2a;
+  --txt:#f0f0f0;--mu:#555;--mu2:#888;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--txt);font-size:14px;padding:2rem;}
+.wrap{max-width:1480px;margin:0 auto;}
+.eyebrow{font-size:.63rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mu);margin-bottom:.5rem;}
+h1{font-size:2rem;font-weight:900;letter-spacing:-.03em;margin-bottom:.3rem;}
+h1 em{font-style:normal;color:var(--y);}
+.sub{font-size:.82rem;color:var(--mu2);margin-bottom:2rem;}
+/* SITE COMPARISON */
+.site-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem;}
+.site-card{background:var(--s1);border:1px solid var(--brd);border-radius:14px;overflow:hidden;}
+.site-header{padding:1.2rem 1.5rem;border-bottom:1px solid var(--brd);display:flex;align-items:center;gap:.8rem;}
+.site-dot{width:10px;height:10px;border-radius:50%;}
+.site-name{font-size:1rem;font-weight:900;}
+.site-sub{font-size:.72rem;color:var(--mu);}
+.site-body{padding:1.2rem 1.5rem;}
+/* KPI mini */
+.mini-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--brd);border:1px solid var(--brd);border-radius:10px;overflow:hidden;margin-bottom:1rem;}
+.mk{background:var(--s2);padding:.8rem .9rem;}
+.mkv{font-size:1.3rem;font-weight:900;letter-spacing:-.02em;line-height:1;}
+.mkl{font-size:.6rem;color:var(--mu);margin-top:.2rem;text-transform:uppercase;letter-spacing:.04em;}
+/* CHART */
+.chart-label{font-size:.72rem;font-weight:700;color:var(--mu2);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem;}
+.chart-label::after{content:'';flex:1;height:1px;background:var(--brd);}
+/* Pill stats */
+.pill-row{display:flex;gap:.5rem;margin-top:.8rem;flex-wrap:wrap;}
+.pill{display:inline-flex;align-items:center;gap:.3rem;font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:12px;}
+.pg{background:#00a65012;color:var(--g);border:1px solid #00a65025;}
+.pr{background:#f23d4f12;color:var(--r);border:1px solid #f23d4f25;}
+.py{background:#ffe60012;color:var(--y);border:1px solid #ffe60025;}
+/* TABLE */
+.sec{display:flex;align-items:center;gap:.8rem;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin:2rem 0 .7rem;}
+.sec::after{content:'';flex:1;height:1px;background:var(--brd2);}
+.note{background:#3483fa08;border:1px solid #3483fa1a;border-radius:8px;padding:.6rem .9rem;font-size:.74rem;color:#93c5fd;margin-bottom:.8rem;}
+.tw{border:1px solid var(--brd);border-radius:10px;overflow:hidden;overflow-x:auto;}
+table{width:100%;border-collapse:collapse;}
+th{background:var(--s2);padding:.52rem .9rem;text-align:left;font-size:.57rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mu2);border-bottom:1px solid var(--brd);white-space:nowrap;cursor:pointer;user-select:none;}
+th:hover{color:var(--txt);} th.r{text-align:right;} th.c{text-align:center;}
+tr:hover td{background:#ffffff03;}
+.filter-bar{display:flex;gap:.5rem;margin-bottom:.8rem;flex-wrap:wrap;align-items:center;}
+.fb{padding:4px 13px;border-radius:20px;font-size:.71rem;font-weight:700;cursor:pointer;border:1px solid var(--brd);color:var(--mu);background:transparent;transition:all .15s;}
+.fb:hover{border-color:var(--brd2);color:var(--txt);}
+.fb.on{border-color:#ffe60040;color:var(--y);background:#ffe60008;}
+footer{text-align:center;font-size:.64rem;color:var(--mu);border-top:1px solid var(--brd);padding-top:1.2rem;margin-top:2rem;}
+</style></head><body>
+<div class="wrap">
+
+<div class="eyebrow">SCABE &middot; MLA &amp; MLB &middot; &Uacute;ltimos 30 d&iacute;as &middot; Incrementalidad medida del A/B</div>
+<h1>Estudio de <em>Incrementalidad</em></h1>
+<p class="sub">73 campa&ntilde;as activas y finalizadas &middot; MLA (63) + MLB (10) &middot; CVR uplift TEST vs CONTROL</p>
+
+<!-- SITE COMPARISON -->
+<div class="site-row">
+  <!-- MLA -->
+  <div class="site-card">
+    <div class="site-header">
+      <div class="site-dot" style="background:var(--y)"></div>
+      <div>
+        <div class="site-name">MLA &mdash; Argentina</div>
+        <div class="site-sub">63 campa&ntilde;as &middot; 61 con datos A/B</div>
+      </div>
+    </div>
+    <div class="site-body">
+      <div class="mini-kpis">
+        <div class="mk"><div class="mkv" style="color:var(--y)">282.2M ARS</div><div class="mkl">NMV Incremental</div></div>
+        <div class="mk"><div class="mkv" style="color:var(--g)">+19.4%</div><div class="mkl">Uplift promedio</div></div>
+        <div class="mk"><div class="mkv" style="color:var(--g)">32</div><div class="mkl">Positivas</div></div>
+        <div class="mk"><div class="mkv" style="color:var(--r)">29</div><div class="mkl">Negativas</div></div>
+      </div>
+      <div class="chart-label">NMV por vertical (ARS)</div>
+      <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.45rem">
+          <div style="font-size:.7rem;color:#999;width:55px;text-align:right;flex-shrink:0">TECH</div>
+          <div style="flex:1;background:#1a1a1a;border-radius:4px;height:22px;position:relative;overflow:hidden">
+            <div style="height:22px;width:100.0%;background:#00a650;opacity:.85;border-radius:4px"></div>
+            <div style="position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:.68rem;font-weight:800;color:#f0f0f0">145.0M ARS</div>
+          </div>
+          <div style="font-size:.6rem;color:#f23d4f;width:35px;text-align:right;flex-shrink:0">5/11</div>
+        </div><div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.45rem">
+          <div style="font-size:.7rem;color:#999;width:55px;text-align:right;flex-shrink:0">HE</div>
+          <div style="flex:1;background:#1a1a1a;border-radius:4px;height:22px;position:relative;overflow:hidden">
+            <div style="height:22px;width:53.1%;background:#00a650;opacity:.85;border-radius:4px"></div>
+            <div style="position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:.68rem;font-weight:800;color:#f0f0f0">76.9M ARS</div>
+          </div>
+          <div style="font-size:.6rem;color:#00a650;width:35px;text-align:right;flex-shrink:0">11/20</div>
+        </div><div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.45rem">
+          <div style="font-size:.7rem;color:#999;width:55px;text-align:right;flex-shrink:0">FASH</div>
+          <div style="flex:1;background:#1a1a1a;border-radius:4px;height:22px;position:relative;overflow:hidden">
+            <div style="height:22px;width:19.6%;background:#00a650;opacity:.85;border-radius:4px"></div>
+            <div style="position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:.68rem;font-weight:800;color:#f0f0f0">28.4M ARS</div>
+          </div>
+          <div style="font-size:.6rem;color:#f23d4f;width:35px;text-align:right;flex-shrink:0">2/6</div>
+        </div><div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.45rem">
+          <div style="font-size:.7rem;color:#999;width:55px;text-align:right;flex-shrink:0">HEALTH</div>
+          <div style="flex:1;background:#1a1a1a;border-radius:4px;height:22px;position:relative;overflow:hidden">
+            <div style="height:22px;width:16.5%;background:#00a650;opacity:.85;border-radius:4px"></div>
+            <div style="position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:.68rem;font-weight:800;color:#f0f0f0">23.9M ARS</div>
+          </div>
+          <div style="font-size:.6rem;color:#00a650;width:35px;text-align:right;flex-shrink:0">3/4</div>
+        </div><div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.45rem">
+          <div style="font-size:.7rem;color:#999;width:55px;text-align:right;flex-shrink:0">CONST</div>
+          <div style="flex:1;background:#1a1a1a;border-radius:4px;height:22px;position:relative;overflow:hidden">
+            <div style="height:22px;width:7.5%;background:#00a650;opacity:.85;border-radius:4px"></div>
+            <div style="position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:.68rem;font-weight:800;color:#f0f0f0">10.9M ARS</div>
+          </div>
+          <div style="font-size:.6rem;color:#00a650;width:35px;text-align:right;flex-shrink:0">2/2</div>
+        </div><div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.45rem">
+          <div style="font-size:.7rem;color:#999;width:55px;text-align:right;flex-shrink:0">BEAUT</div>
+          <div style="flex:1;background:#1a1a1a;border-radius:4px;height:22px;position:relative;overflow:hidden">
+            <div style="height:22px;width:3.0%;background:#00a650;opacity:.85;border-radius:4px"></div>
+            <div style="position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:.68rem;font-weight:800;color:#f0f0f0">4.4M ARS</div>
+          </div>
+          <div style="font-size:.6rem;color:#f23d4f;width:35px;text-align:right;flex-shrink:0">1/4</div>
+        </div><div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.45rem">
+          <div style="font-size:.7rem;color:#999;width:55px;text-align:right;flex-shrink:0">ENTERT</div>
+          <div style="flex:1;background:#1a1a1a;border-radius:4px;height:22px;position:relative;overflow:hidden">
+            <div style="height:22px;width:2.6%;background:#00a650;opacity:.85;border-radius:4px"></div>
+            <div style="position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:.68rem;font-weight:800;color:#f0f0f0">3.7M ARS</div>
+          </div>
+          <div style="font-size:.6rem;color:#00a650;width:35px;text-align:right;flex-shrink:0">1/2</div>
+        </div><div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.45rem">
+          <div style="font-size:.7rem;color:#999;width:55px;text-align:right;flex-shrink:0">FURN</div>
+          <div style="flex:1;background:#1a1a1a;border-radius:4px;height:22px;position:relative;overflow:hidden">
+            <div style="height:22px;width:2.2%;background:#00a650;opacity:.85;border-radius:4px"></div>
+            <div style="position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:.68rem;font-weight:800;color:#f0f0f0">3.2M ARS</div>
+          </div>
+          <div style="font-size:.6rem;color:#00a650;width:35px;text-align:right;flex-shrink:0">1/2</div>
+        </div>
+      <div class="pill-row">
+        <span class="pill pg">&#9679; 32 con uplift positivo</span>
+        <span class="pill pr">&#9679; 29 con uplift negativo</span>
+        <span class="pill py">&#9679; 677K optins</span>
+      </div>
+    </div>
+  </div>
+  <!-- MLB -->
+  <div class="site-card">
+    <div class="site-header">
+      <div class="site-dot" style="background:var(--b)"></div>
+      <div>
+        <div class="site-name">MLB &mdash; Brasil</div>
+        <div class="site-sub">10 campa&ntilde;as &middot; 6 con datos A/B</div>
+      </div>
+    </div>
+    <div class="site-body">
+      <div class="mini-kpis">
+        <div class="mk"><div class="mkv" style="color:var(--b)">1.4M BRL</div><div class="mkl">NMV Incremental</div></div>
+        <div class="mk"><div class="mkv" style="color:var(--g)">+4.0%</div><div class="mkl">Uplift promedio</div></div>
+        <div class="mk"><div class="mkv" style="color:var(--g)">6</div><div class="mkl">Positivas</div></div>
+        <div class="mk"><div class="mkv" style="color:var(--r)">0</div><div class="mkl">Negativas</div></div>
+      </div>
+      <div class="chart-label">NMV por vertical (BRL)</div>
+      <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.45rem">
+          <div style="font-size:.7rem;color:#999;width:55px;text-align:right;flex-shrink:0">teste 1 high</div>
+          <div style="flex:1;background:#1a1a1a;border-radius:4px;height:22px;position:relative;overflow:hidden">
+            <div style="height:22px;width:100.0%;background:#00a650;opacity:.85;border-radius:4px"></div>
+            <div style="position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:.68rem;font-weight:800;color:#f0f0f0">777K BRL</div>
+          </div>
+          <div style="font-size:.6rem;color:#00a650;width:35px;text-align:right;flex-shrink:0">1/1</div>
+        </div><div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.45rem">
+          <div style="font-size:.7rem;color:#999;width:55px;text-align:right;flex-shrink:0">Teste 2 High</div>
+          <div style="flex:1;background:#1a1a1a;border-radius:4px;height:22px;position:relative;overflow:hidden">
+            <div style="height:22px;width:38.9%;background:#00a650;opacity:.85;border-radius:4px"></div>
+            <div style="position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:.68rem;font-weight:800;color:#f0f0f0">302K BRL</div>
+          </div>
+          <div style="font-size:.6rem;color:#00a650;width:35px;text-align:right;flex-shrink:0">3/3</div>
+        </div><div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.45rem">
+          <div style="font-size:.7rem;color:#999;width:55px;text-align:right;flex-shrink:0">teste 1 low </div>
+          <div style="flex:1;background:#1a1a1a;border-radius:4px;height:22px;position:relative;overflow:hidden">
+            <div style="height:22px;width:22.2%;background:#00a650;opacity:.85;border-radius:4px"></div>
+            <div style="position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:.68rem;font-weight:800;color:#f0f0f0">173K BRL</div>
+          </div>
+          <div style="font-size:.6rem;color:#00a650;width:35px;text-align:right;flex-shrink:0">1/1</div>
+        </div><div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.45rem">
+          <div style="font-size:.7rem;color:#999;width:55px;text-align:right;flex-shrink:0">teste 1 mid </div>
+          <div style="flex:1;background:#1a1a1a;border-radius:4px;height:22px;position:relative;overflow:hidden">
+            <div style="height:22px;width:19.0%;background:#00a650;opacity:.85;border-radius:4px"></div>
+            <div style="position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:.68rem;font-weight:800;color:#f0f0f0">147K BRL</div>
+          </div>
+          <div style="font-size:.6rem;color:#00a650;width:35px;text-align:right;flex-shrink:0">1/1</div>
+        </div><div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.45rem">
+          <div style="font-size:.7rem;color:#999;width:55px;text-align:right;flex-shrink:0">Test coupon </div>
+          <div style="flex:1;background:#1a1a1a;border-radius:4px;height:22px;position:relative;overflow:hidden">
+            <div style="height:22px;width:0.0%;background:#00a650;opacity:.85;border-radius:4px"></div>
+            <div style="position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:.68rem;font-weight:800;color:#f0f0f0">0 BRL</div>
+          </div>
+          <div style="font-size:.6rem;color:#f23d4f;width:35px;text-align:right;flex-shrink:0">0/1</div>
+        </div><div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.45rem">
+          <div style="font-size:.7rem;color:#999;width:55px;text-align:right;flex-shrink:0">Tato test</div>
+          <div style="flex:1;background:#1a1a1a;border-radius:4px;height:22px;position:relative;overflow:hidden">
+            <div style="height:22px;width:0.0%;background:#00a650;opacity:.85;border-radius:4px"></div>
+            <div style="position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:.68rem;font-weight:800;color:#f0f0f0">0 BRL</div>
+          </div>
+          <div style="font-size:.6rem;color:#f23d4f;width:35px;text-align:right;flex-shrink:0">0/1</div>
+        </div><div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.45rem">
+          <div style="font-size:.7rem;color:#999;width:55px;text-align:right;flex-shrink:0">TEST tato</div>
+          <div style="flex:1;background:#1a1a1a;border-radius:4px;height:22px;position:relative;overflow:hidden">
+            <div style="height:22px;width:0.0%;background:#00a650;opacity:.85;border-radius:4px"></div>
+            <div style="position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:.68rem;font-weight:800;color:#f0f0f0">0 BRL</div>
+          </div>
+          <div style="font-size:.6rem;color:#f23d4f;width:35px;text-align:right;flex-shrink:0">0/1</div>
+        </div><div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.45rem">
+          <div style="font-size:.7rem;color:#999;width:55px;text-align:right;flex-shrink:0">TEST TATO 2</div>
+          <div style="flex:1;background:#1a1a1a;border-radius:4px;height:22px;position:relative;overflow:hidden">
+            <div style="height:22px;width:0.0%;background:#00a650;opacity:.85;border-radius:4px"></div>
+            <div style="position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:.68rem;font-weight:800;color:#f0f0f0">0 BRL</div>
+          </div>
+          <div style="font-size:.6rem;color:#f23d4f;width:35px;text-align:right;flex-shrink:0">0/1</div>
+        </div>
+      <div class="pill-row">
+        <span class="pill pg">&#9679; 6 con uplift positivo</span>
+        <span class="pill pr">&#9679; 0 con uplift negativo</span>
+        <span class="pill py">&#9679; 1.6M optins</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TABLE -->
+<div class="sec">Todas las campa&ntilde;as &mdash; click en columna para ordenar</div>
+<div class="filter-bar">
+  <button class="fb on" onclick="fSite('all',this)">Todos (73)</button>
+  <button class="fb" onclick="fSite('MLA',this)">MLA (63)</button>
+  <button class="fb" onclick="fSite('MLB',this)">MLB (10)</button>
+  <span style="color:var(--brd2);padding:0 .2rem">|</span>
+  <button class="fb" onclick="fUplift('pos',this)">Positivas</button>
+  <button class="fb" onclick="fUplift('neg',this)">Negativas</button>
+  <span style="margin-left:auto;font-size:.7rem;color:var(--mu)" id="cnt">73 campa&ntilde;as</span>
+</div>
+<div class="note">NMV en moneda local del site (ARS para MLA, BRL para MLB) &middot; Calculado del A/B: (CVR_TEST &minus; CVR_CTRL) &times; sesiones &times; precio promedio</div>
+<div class="tw">
+<table id="tbl">
+  <thead><tr>
+    <th onclick="sc(this,0)">Campa&ntilde;a</th>
+    <th class="c" onclick="sc(this,1)">CVR Uplift</th>
+    <th class="r" onclick="sc(this,2)">NMV Inc. LC</th>
+    <th class="r" onclick="sc(this,3)">SI Inc.</th>
+    <th class="c" onclick="sc(this,4)">CVR TEST</th>
+    <th class="c" onclick="sc(this,5)">CVR CTRL</th>
+    <th class="r" onclick="sc(this,6)">Sesiones TEST</th>
+    <th class="r" onclick="sc(this,7)">Optins</th>
+    <th class="r" onclick="sc(this,8)">Precio prom.</th>
+    <th onclick="sc(this,9)">Estado</th>
+  </tr></thead>
+  <tbody><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>TECH</strong> &bull; ntbk <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-20</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+51.1%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">72.9M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">70</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">0.752%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">0.498%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">28K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">7K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">1.0M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HE</strong> &bull; tv <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-20</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+30.1%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">56.2M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">126</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.314%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">1.01%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">41K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">10K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">446K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>TECH</strong> &bull; smrt <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-20</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+16.6%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">54.6M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">153</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">0.965%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">0.828%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">111K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">29K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">358K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>TECH</strong> &bull; tablets <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+61.9%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">33.2M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">103</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.197%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">0.739%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">22K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">5K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">323K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>FASH</strong> &bull; snkrs <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-20</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+8.1%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">28.9M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">311</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">0.851%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">0.788%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">489K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">93K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">93K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>TECH</strong> &bull; printers <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+88.5%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">28.0M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">82</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">2.253%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">1.195%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">8K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">2K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">343K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>TECH</strong> &bull; dsktp <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+825.9%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">25.8M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">52</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.268%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">0.137%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">5K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">2K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">499K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HE</strong> &bull; kitchen <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-20</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+5.2%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">18.6M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">249</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">2.332%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">2.218%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">217K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">38K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">75K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>TECH</strong> &bull; dsktp <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="color:#333;font-size:.75rem">Sin datos</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">18.0M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">26</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">0.403%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">0.0%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">6K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">3K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">693K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>FASH</strong> &bull; snkrs <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-20</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+8.2%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">12.2M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">258</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.038%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">0.959%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">328K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">62K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">47K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HEALTH</strong> &bull; spsupl <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+11.0%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">11.9M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">234</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">6.579%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">5.925%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">36K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">9K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">51K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HE</strong> &bull; builtin <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-20</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+7.9%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">11.8M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">64</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.647%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">1.526%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">53K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">9K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">186K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HEALTH</strong> &bull; spsupl <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+8.1%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">8.3M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">306</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">7.716%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">7.141%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">53K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">17K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">27K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HE</strong> &bull; tv <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-20</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+3.2%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">7.4M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">27</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.978%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">1.916%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">43K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">10K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">279K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>CONST</strong> &bull; pwrtls <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+3.2%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">6.5M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">153</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">3.615%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">3.503%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">137K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">27K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">42K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HE</strong> &bull; cooling <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+100.5%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">6.4M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">81</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">3.349%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">1.671%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">5K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">565</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">79K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HEALTH</strong> &bull; healthsupl <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+18.0%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">6.2M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">287</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">9.743%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">8.258%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">19K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">5K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">22K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>BEAUT</strong> &bull; beautelec <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+5.3%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">6.1M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">134</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">3.46%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">3.284%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">76K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">15K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">46K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HE</strong> &bull; hsclean <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+5.2%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">5.0M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">119</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">3.488%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">3.317%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">70K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">14K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">42K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HE</strong> &bull; kitchen <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-20</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+4.2%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">4.7M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">139</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">3.137%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">3.01%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">109K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">23K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">34K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>SPORT</strong> &bull; camping <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+21.3%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">4.6M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">124</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.731%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">1.427%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">41K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">9K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">37K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>CONST</strong> &bull; pwrtls <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+1.2%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">4.4M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">58</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">2.694%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">2.661%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">174K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">35K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">77K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>ENTERT</strong> &bull; micr <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+19.8%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">3.8M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">25</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">2.675%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">2.233%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">6K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">1K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">155K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>FURN</strong> &bull; bdrmtxt <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+11.2%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">3.3M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">139</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">2.493%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">2.242%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">56K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">19K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">23K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HE</strong> &bull; builtin <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-20</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+26.6%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">2.3M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">17</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.788%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">1.412%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">4K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">551</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">139K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>CPG</strong> &bull; infants <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+9.1%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">2.1M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">40</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">15.472%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">14.178%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">3K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">1K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">52K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HE</strong> &bull; builtin <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-20</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+2.9%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">1.8M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">13</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.733%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">1.684%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">27K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">4K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">135K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HE</strong> &bull; refrig <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+5.0%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">1.3M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">4</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">0.868%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">0.826%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">10K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">2K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">308K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HE</strong> &bull; cooling <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+1.8%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">1.0M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">8</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">2.871%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">2.82%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">15K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">2K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">135K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>TYB</strong> &bull; brstfeed <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+11.0%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">1.0M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">30</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">2.784%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">2.508%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">11K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">3K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">34K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>TYB</strong> &bull; strollers <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+4.3%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">757K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">5</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.231%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">1.18%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">10K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">1K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">143K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>VPAA</strong> &bull; motorepl <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+25.0%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">428K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">10</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.162%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">0.93%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">4K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">3K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">45K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>TYB</strong> &bull; strollers <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+9.9%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">409K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">4</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.324%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">1.205%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">4K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">515</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">91K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>VPAA</strong> &bull; motorepl <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-3.9%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-28K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-1</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.362%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">1.416%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">2K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">3K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">24K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>FURN</strong> &bull; bdrmtxt <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-0.3%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-61K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-1</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.616%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">1.622%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">27K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">6K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">41K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>ENTERT</strong> &bull; micr <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-1.3%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-62K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-1</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">4.397%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">4.454%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">2K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">471</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">44K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>BEAUT</strong> &bull; esthetic <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-2.9%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-65K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-2</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">3.569%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">3.676%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">2K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">641</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">39K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>FASH</strong> &bull; bagpack <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-1.0%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-170K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-4</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">0.951%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">0.961%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">44K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">7K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">41K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HE</strong> &bull; tvacc <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-1.0%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-260K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-11</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">5.822%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">5.882%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">18K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">4K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">24K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HE</strong> &bull; tvacc <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-4.0%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-359K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-33</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">7.418%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">7.724%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">11K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">4K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">11K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HE</strong> &bull; laundry <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-0.2%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-660K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-1</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">0.848%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">0.85%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">90K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">19K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">443K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HE</strong> &bull; tv <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-20</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-3.1%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-1.0M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-2</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.103%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">1.138%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">6K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">1K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">456K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>BEAUT</strong> &bull; esthetic <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-5.2%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-1.7M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-12</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">2.14%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">2.257%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">10K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">2K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">146K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>CPG</strong> &bull; infants <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-14.6%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-2.1M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-67</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">18.262%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">21.39%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">2K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">766</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">31K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>FASH</strong> &bull; boots <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-7.7%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-2.2M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-54</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.363%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">1.476%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">48K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">5K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">40K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HEALTH</strong> &bull; healthsupl <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-7.0%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-2.6M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-63</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">8.156%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">8.766%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">10K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">2K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">41K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>SPORT</strong> &bull; camping <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-9.8%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-2.6M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-118</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">2.311%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">2.562%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">47K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">13K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">22K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HE</strong> &bull; hsclean <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-1.6%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-3.0M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-35</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">2.65%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">2.695%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">79K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">12K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">85K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>TYB</strong> &bull; brstfeed <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-10.6%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-3.5M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-42</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">2.563%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">2.867%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">14K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">4K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">84K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>FASH</strong> &bull; boots <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-8.6%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-4.4M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-69</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">0.854%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">0.934%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">86K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">10K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">64K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HE</strong> &bull; heating <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-20</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-1.9%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-5.1M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-76</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">3.016%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">3.076%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">127K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">26K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">67K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>VPAA</strong> &bull; autotires <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-10.1%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-5.7M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-31</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">2.36%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">2.623%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">12K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">2K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">187K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>TECH</strong> &bull; printers <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-13.1%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-5.8M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-29</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">2.608%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">3.002%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">7K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">2K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">201K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>FASH</strong> &bull; bagpack <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-28.1%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-6.0M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-234</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.436%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">1.997%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">42K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">9K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">25K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HE</strong> &bull; laundry <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-2.9%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-6.6M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-34</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.677%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">1.728%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">67K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">13K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">197K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>TECH</strong> &bull; tablets <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-14.0%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-8.8M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-46</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">2.286%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">2.659%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">12K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">3K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">190K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>VPAA</strong> &bull; autotires <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-16.1%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-9.5M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-102</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">3.775%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">4.496%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">14K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">2K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">93K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>TECH</strong> &bull; smrt <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-20</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-19.8%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-10.4M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-51</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.81%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">2.257%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">11K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">3K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">205K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HE</strong> &bull; heating <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-20</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-2.5%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-10.9M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-64</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.613%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">1.654%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">157K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">27K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">170K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>HE</strong> &bull; refrig <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#3483fa12;color:#7db8ff;border:1px solid #7db8ff25">highasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-12.8%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-11.8M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-20</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">0.547%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">0.627%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">25K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">6K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">593K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>TECH</strong> &bull; smrt <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-20</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-11.1%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-29.2M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-146</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.645%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">1.849%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">71K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">17K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">201K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#f23d4f05">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>TECH</strong> &bull; ntbk <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-20</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#f23d4f">-14.5%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#f23d4f">-33.4M LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">-66</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">0.913%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">1.068%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">43K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">12K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">504K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>BEAUT</strong> &bull; beautelec <span style="font-size:.58rem;padding:2px 6px;border-radius:4px;background:#ffffff08;color:#888;border:1px solid #88825">lowasp</span></div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#ffe60015;color:#ffe600;border:1px solid #ffe60025;font-weight:700">MLA</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-22</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="color:#333;font-size:.75rem">Sin datos</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">0 LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">&mdash;</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">0</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">0</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">&mdash; LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>teste 1 high asp mlb</strong> </div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#3483fa15;color:#3483fa;border:1px solid #3483fa25;font-weight:700">MLB</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-19</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+10.5%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">777K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">577</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">1.601%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">1.449%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">380K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">96K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">1K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>Teste 2 High ASP HE</strong> </div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#3483fa15;color:#3483fa;border:1px solid #3483fa25;font-weight:700">MLB</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+2.5%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">190K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">1K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">6.516%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">6.357%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">765K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">315K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">156 LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>teste 1 low asp mlb</strong> </div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#3483fa15;color:#3483fa;border:1px solid #3483fa25;font-weight:700">MLB</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-19</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+4.0%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">173K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">3K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">4.06%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">3.903%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">2.0M</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">601K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">56 LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>teste 1 mid asp mlb</strong> </div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#3483fa15;color:#3483fa;border:1px solid #3483fa25;font-weight:700">MLB</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-19</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+3.0%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">147K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">1K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">5.807%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">5.636%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">717K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">227K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">120 LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>Teste 2 High ASP F&H</strong> </div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#3483fa15;color:#3483fa;border:1px solid #3483fa25;font-weight:700">MLB</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+2.6%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">101K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">670</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">2.349%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">2.288%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">1.1M</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">314K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">151 LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:#00a65005">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>Teste 2 High ASP CI</strong> </div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#3483fa15;color:#3483fa;border:1px solid #3483fa25;font-weight:700">MLB</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-26</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="font-size:.88rem;font-weight:900;color:#00a650">+1.6%</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">11K LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">111</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">6.884%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">6.773%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">100K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">20K</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">103 LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">active</td>
+    </tr><tr style="background:">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>Test coupon tato</strong> </div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#3483fa15;color:#3483fa;border:1px solid #3483fa25;font-weight:700">MLB</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-13</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="color:#333;font-size:.75rem">Sin datos</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">0 LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">&mdash;</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">0</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">0</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">&mdash; LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">finished</td>
+    </tr><tr style="background:">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>Tato test</strong> </div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#3483fa15;color:#3483fa;border:1px solid #3483fa25;font-weight:700">MLB</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-04</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="color:#333;font-size:.75rem">Sin datos</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">0 LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">&mdash;</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">0</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">0</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">&mdash; LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">finished</td>
+    </tr><tr style="background:">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>TEST tato</strong> </div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#3483fa15;color:#3483fa;border:1px solid #3483fa25;font-weight:700">MLB</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-04</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="color:#333;font-size:.75rem">Sin datos</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">0 LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">&mdash;</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">0</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">0</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">&mdash; LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">finished</td>
+    </tr><tr style="background:">
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;white-space:normal;min-width:200px">
+        <div style="font-size:.78rem;line-height:1.4"><strong>TEST TATO 2</strong> </div>
+        <div style="margin-top:3px;display:flex;align-items:center;gap:.4rem">
+          <span style="font-size:.6rem;padding:2px 6px;border-radius:4px;background:#3483fa15;color:#3483fa;border:1px solid #3483fa25;font-weight:700">MLB</span>
+          <span style="font-size:.58rem;color:#2a2a2a">ID  &middot; 2026-05-05</span>
+        </div>
+      </td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;white-space:nowrap"><span style="color:#333;font-size:.75rem">Sin datos</span></td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.82rem;font-weight:700;color:#00a650">0 LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.75rem;color:#888">&mdash;</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#777">%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:center;font-size:.73rem;color:#555">%</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">0</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.73rem;color:#888">0</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;text-align:right;font-size:.72rem;color:#666">&mdash; LC</td>
+      <td style="padding:.65rem 1rem;border-bottom:1px solid #0d0d0d;font-size:.7rem;color:#555">finished</td>
+    </tr></tbody>
+</table>
+</div>
+</div>
+
+<footer>SCABE MLA &amp; MLB &middot; &Uacute;ltimos 30 d&iacute;as &middot; Incrementalidad A/B desde BT_MKP_BENEFITS_UPLIFT_SESSIONS_METRICS_DLY</footer>
+<script>
+var curSite='all', curUplift='all', sortD=-1, sortI=-1;
+function applyF(){
+  var n=0;
+  document.querySelectorAll('#tbl tbody tr').forEach(function(r){
+    var siteOk = curSite==='all' || r.querySelector('span[style*="border-radius"]') && r.innerHTML.includes(curSite);
+    var upliftCell = r.cells[1] ? r.cells[1].textContent.trim() : '';
+    var upliftOk = curUplift==='all' ||
+      (curUplift==='pos' && upliftCell && !upliftCell.startsWith('-') && upliftCell!='Sin datos') ||
+      (curUplift==='neg' && upliftCell.startsWith('-'));
+    var show = siteOk && upliftOk;
+    r.style.display = show ? '' : 'none';
+    if(show) n++;
+  });
+  document.getElementById('cnt').textContent = n + ' campa&#241;as';
+}
+function fSite(s,el){
+  curSite=s;
+  document.querySelectorAll('.fb').forEach(function(b){
+    if(['Todos','MLA','MLB'].some(function(x){return b.textContent.startsWith(x);})&&b!==el)b.classList.remove('on');
+  });
+  el.classList.add('on'); applyF();
+}
+function fUplift(u,el){
+  curUplift = curUplift===u?'all':u;
+  document.querySelectorAll('.fb').forEach(function(b){
+    if(['Positivas','Negativas'].some(function(x){return b.textContent===x;}))b.classList.remove('on');
+  });
+  if(curUplift!=='all') el.classList.add('on');
+  applyF();
+}
+function sc(th,col){
+  if(sortI===col)sortD*=-1;else{sortI=col;sortD=-1;}
+  document.querySelectorAll('th').forEach(function(t){t.style.color='';});
+  th.style.color='var(--y)';
+  var tb=document.querySelector('#tbl tbody');
+  [...tb.querySelectorAll('tr')].sort(function(a,b){
+    var av=(a.cells[col]||{}).textContent.replace(/[LC$,MKBARS%+BRL ARS]/g,'').trim()||'-9999';
+    var bv=(b.cells[col]||{}).textContent.replace(/[LC$,MKBARS%+BRL ARS]/g,'').trim()||'-9999';
+    var an=parseFloat(av),bn=parseFloat(bv);
+    if(!isNaN(an)&&!isNaN(bn))return(bn-an)*sortD;
+    return av.localeCompare(bv)*sortD;
+  }).forEach(function(r){tb.appendChild(r);});
+}
+</script>
+</body></html>

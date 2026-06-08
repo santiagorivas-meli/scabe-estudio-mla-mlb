@@ -116,8 +116,10 @@ footer{text-align:center;font-size:11px;color:#333;margin-top:32px;padding-top:2
   <button class="tab active" onclick="showTab('overview',this)">Resumen ejecutivo</button>
   <button class="tab" onclick="showTab('roiprice',this)">ROI por precio</button>
   <button class="tab" onclick="showTab('asp',this)">ASP High vs Low</button>
+  <button class="tab" onclick="showTab('items',this)">Ítems</button>
+  <button class="tab" onclick="showTab('audience',this)">Audiencias</button>
   <button class="tab" onclick="showTab('campaigns',this)">Campañas</button>
-  <button class="tab" onclick="showTab('conclusions',this)">Conclusiones</button>
+  <button class="tab" onclick="showTab('conclusions',this)">Por qué seguir usando esto</button>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════
@@ -609,6 +611,416 @@ footer{text-align:center;font-size:11px;color:#333;margin-top:32px;padding-top:2
   </div>
 
 </div><!-- /tab-campaigns -->
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB: ÍTEMS
+════════════════════════════════════════════════════════════ -->
+<div id="tab-items" class="tab-content">
+
+  <!-- PRICE DISTRIBUTION -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Distribución de ítems por rango de precio — NMV Incremental</span>
+      <span class="card-sub">Fuente: BT_MKP_BENEFITS_UPLIFT_SESSIONS_METRICS_DLY · Mayo 2026 · MLA + MLB</span>
+    </div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>Rango precio (USD)</th>
+        <th class="r">NSI total</th>
+        <th class="r">NMV Generado</th>
+        <th class="r">NMV Incremental</th>
+        <th class="r">% filas positivas</th>
+        <th class="r">NMV incr. prom/fila</th>
+        <th class="r">Descuento prom.</th>
+      </tr></thead>
+      <tbody>
+      ${[
+        ['$0–10','MLA',498016,'$2.4M','$494K','14.4%','$3.07','8.0%'],
+        ['$10–15','MLA',442495,'$4.1M','$860K','13.8%','$5.29','8.6%'],
+        ['$15–20','MLA',306082,'$3.9M','$847K','12.8%','$6.53','10.0%'],
+        ['$20–25','MLA',321291,'$5.1M','$2.0M','12.4%','$16.25','13.1%'],
+        ['$25–35','MLA',317271,'$7.0M','$2.6M','12.1%','$17.73','10.5%'],
+        ['$35–70 ★','MLA',629652,'$21.2M','$10.0M','12.0%','$33.86','11.9%'],
+        ['$70–170','MLA',305516,'$20.7M','$11.8M','10.8%','$73.98','11.3%'],
+        ['$170–345','MLA',85381,'$12.4M','$8.3M','9.2%','$169.00','11.9%'],
+        ['$345–500','MLA',21949,'$5.9M','$4.3M','7.8%','$367.93','13.7%'],
+        ['$500+','MLA',19573,'$11.1M','$8.4M','5.6%','$616.28','11.5%'],
+        ['$0–10','MLB',6719102,'$34.0M','$10.5M','26.3%','$8.87','14.8%'],
+        ['$10–15','MLB',6265424,'$48.0M','$19.1M','27.1%','$17.51','20.4%'],
+        ['$15–20','MLB',4378570,'$43.1M','$18.2M','25.3%','$21.51','22.6%'],
+        ['$20–25','MLB',1611172,'$19.9M','$13.4M','21.7%','$32.99','17.7%'],
+        ['$25–35','MLB',2785318,'$45.4M','$29.9M','20.3%','$49.44','22.3%'],
+        ['$35–70 ★','MLB',3559891,'$91.0M','$63.9M','19.3%','$78.58','20.9%'],
+        ['$70–170','MLB',1097683,'$64.4M','$49.8M','16.0%','$116.30','16.4%'],
+        ['$170–345','MLB',269224,'$34.7M','$30.1M','12.8%','$232.50','15.0%'],
+        ['$345–500','MLB',74641,'$17.1M','$14.9M','12.4%','$431.72','17.1%'],
+        ['$500+','MLB',30460,'$14.2M','$11.9M','6.2%','$637.05','19.9%'],
+      ].map(([range,site,nsi,gen,incr,pct,avg,disc])=>{
+        const isStar=range.includes('★');
+        const siteColor=site==='MLA'?'#e6a817':'#3483fa';
+        const bg=isStar?'rgba(255,230,0,.03)':'';
+        return `<tr style="border-bottom:1px solid #1a1a1a;background:${bg}" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background='${bg}'">
+          <td style="padding:10px 14px;font-size:12px;font-weight:${isStar?'700':'400'};color:${isStar?'#ffe600':'#aaa'}">${range} <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${siteColor};margin-left:6px"></span></td>
+          <td style="padding:10px 14px;text-align:right;font-size:11px;color:#555">${(nsi/1000).toFixed(0)}K</td>
+          <td style="padding:10px 14px;text-align:right;font-size:12px;color:#7db8ff">${gen}</td>
+          <td style="padding:10px 14px;text-align:right;font-size:12px;font-weight:700;color:#00a650">${incr}</td>
+          <td style="padding:10px 14px;text-align:right;font-size:12px;color:#888">${pct}</td>
+          <td style="padding:10px 14px;text-align:right;font-size:12px;font-weight:700;color:#f0f0f0">${avg}</td>
+          <td style="padding:10px 14px;text-align:right;font-size:12px;color:#555">${disc}</td>
+        </tr>`;
+      }).join('')}
+      </tbody>
+    </table>
+    </div>
+    <div style="padding:14px 24px;border-top:1px solid #1a1a1a;font-size:11px;color:#444">
+      ★ El rango <strong style="color:#ffe600">$35–70 USD</strong> concentra el mayor NMV incremental absoluto en ambos sitios ($10M MLA · $63.9M MLB). A mayor precio, el NMV por fila es mayor pero el % de ítems positivos cae (26% en $0–10 vs 6% en $500+).
+    </div>
+  </div>
+
+  <!-- TOP ITEMS -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+
+    <!-- MLA TOP ITEMS -->
+    <div class="card">
+      <div class="card-header"><span class="card-title">🇦🇷 MLA — Top 20 ítems por NMV generado</span></div>
+      <div class="tw">
+      <table>
+        <thead><tr>
+          <th>Item ID</th><th>Categoría</th><th class="r">Precio</th><th class="r">Órdenes</th><th class="r">NMV Gen.</th><th class="r">ROI</th>
+        </tr></thead>
+        <tbody>
+        ${[
+          ['1125973513','LAUNDRY','$467K ARS',267,'$91K','31x'],
+          ['1629168131','FURNITURE','$50K ARS',1084,'$39K','158x'],
+          ['2340370636','BED TEXTILES','$32K ARS',1601,'$38K','36x'],
+          ['2807165662','IT PERIPH.','$454K ARS',87,'$28K','593x'],
+          ['1766927359','BOOKS','$22K ARS',558,'$22K','215x'],
+          ['2077463660','KITCHEN','$133K ARS',212,'$20K','45x'],
+          ['1661582107','FURNITURE','$50K ARS',550,'$20K','143x'],
+          ['1777273639','SMALL APPL.','$186K ARS',117,'$16K','171x'],
+          ['3017985912','TELEVISIONS','$2.5M ARS',8,'$14K','118x'],
+          ['3211845924','FURNITURE','$45K ARS',420,'$13K','71x'],
+          ['1496866959','REFRIGERATION','$707K ARS',25,'$13K','397x'],
+          ['1448871593','LAUNDRY','$496K ARS',32,'$11K','112x'],
+          ['1593918761','FURNITURE','$54K ARS',291,'$11K','208x'],
+          ['1564164709','SMARTWATCHES','$98K ARS',143,'$10K','453x'],
+          ['3310234556','CONSOLES','$1.3M ARS',11,'$10K','—'],
+          ['2896476180','BICYCLES','$213K ARS',55,'$9K','171x'],
+          ['3020946374','REFRIGERATION','$1.0M ARS',12,'$9K','408x'],
+          ['1502781817','MASSAGERS','$1.8M ARS',7,'$9K','—'],
+          ['1675352077','PARTY SUPPLY','$28K ARS',391,'$9K','111x'],
+          ['2007164984','BED TEXTILES','$77K ARS',154,'$8K','57x'],
+        ].map(([id,cat,price,orders,nmv,roi])=>`
+        <tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background=''">
+          <td style="padding:8px 14px;font-size:10px;color:#555;font-family:monospace">${id}</td>
+          <td style="padding:8px 14px;font-size:11px;color:#aaa">${cat}</td>
+          <td style="padding:8px 14px;text-align:right;font-size:11px;color:#666">${price}</td>
+          <td style="padding:8px 14px;text-align:right;font-size:11px;color:#888">${orders.toLocaleString()}</td>
+          <td style="padding:8px 14px;text-align:right;font-size:12px;font-weight:700;color:#7db8ff">${nmv}</td>
+          <td style="padding:8px 14px;text-align:right;font-size:12px;font-weight:700;color:#00a650">${roi}</td>
+        </tr>`).join('')}
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <!-- MLB TOP ITEMS -->
+    <div class="card">
+      <div class="card-header"><span class="card-title">🇧🇷 MLB — Top 20 ítems por NMV generado</span></div>
+      <div class="tw">
+      <table>
+        <thead><tr>
+          <th>Item ID</th><th>Categoría</th><th class="r">Precio</th><th class="r">Órdenes</th><th class="r">NMV Gen.</th><th class="r">ROI</th>
+        </tr></thead>
+        <tbody>
+        ${[
+          ['2130011591','BEAUTY SALOON','$1,709',370,'$127K','77x'],
+          ['5761677016','SUPPLEMENTS','$58',9698,'$121K','57x'],
+          ['5532075156','SNEAKERS','$163',3067,'$101K','21x'],
+          ['4328800327','SMARTWATCHES','$360',1267,'$93K','117x'],
+          ['4049279695','SNEAKERS','$96',4241,'$80K','13x'],
+          ['6713257492','BOOKS','$57',6225,'$77K','226x'],
+          ['5474960430','PHONE ACCESS.','$95',3500,'$75K','56x'],
+          ['5761715520','SUPPLEMENTS','$47',6891,'$74K','73x'],
+          ['4291609113','SUPPLEMENTS','$57',5436,'$73K','62x'],
+          ['4967167410','CAMPING','$49',6951,'$72K','119x'],
+          ['4125132275','BATH TEXTILES','$96',3562,'$71K','8x'],
+          ['5999388018','SMARTWATCHES','$352',910,'$66K','41x'],
+          ['4227761629','BAG & BACKPACK','$89',3255,'$60K','41x'],
+          ['4451980333','BATH TEXTILES','$126',2279,'$60K','8x'],
+          ['6547000706','BEAUTY ELEC.','$388',715,'$56K','120x'],
+          ['5265791338','CAMPING','$37',6258,'$55K','74x'],
+          ['4466276267','BAG & BACKPACK','$110',2293,'$54K','11x'],
+          ['5513246190','MASSAGERS','$1,048',250,'$53K','288x'],
+          ['6686458480','IT PERIPH.','$912',280,'$52K','34x'],
+          ['3874778091','SUPPLEMENTS','$62',2981,'$49K','57x'],
+        ].map(([id,cat,price,orders,nmv,roi])=>`
+        <tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background=''">
+          <td style="padding:8px 14px;font-size:10px;color:#555;font-family:monospace">${id}</td>
+          <td style="padding:8px 14px;font-size:11px;color:#aaa">${cat}</td>
+          <td style="padding:8px 14px;text-align:right;font-size:11px;color:#666">${price}</td>
+          <td style="padding:8px 14px;text-align:right;font-size:11px;color:#888">${orders.toLocaleString()}</td>
+          <td style="padding:8px 14px;text-align:right;font-size:12px;font-weight:700;color:#7db8ff">${nmv}</td>
+          <td style="padding:8px 14px;text-align:right;font-size:12px;font-weight:700;color:#00a650">${roi}</td>
+        </tr>`).join('')}
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISCOUNT INSIGHT -->
+  <div style="background:#0d0d0d;border:1px solid #222;border-radius:12px;padding:24px;border-left:4px solid #a855f7">
+    <div style="font-size:13px;font-weight:800;color:#a855f7;margin-bottom:12px">¿A mayor descuento, mayor ROI?</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+      <div>
+        <div style="font-size:11px;color:#555;margin-bottom:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em">MLA — Descuento promedio por precio</div>
+        ${[['$0–35',9],['$35–170',11.6],['$170–500',12.8],['$500+',11.5]].map(([r,d])=>`
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <div style="width:70px;font-size:11px;color:#777;text-align:right">${r}</div>
+          <div style="flex:1;background:#1a1a1a;border-radius:3px;height:18px;position:relative;overflow:hidden">
+            <div style="height:18px;width:${d*3}%;background:#a855f7;opacity:.7;border-radius:3px"></div>
+            <div style="position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:10px;font-weight:700;color:#f0f0f0">${d}%</div>
+          </div>
+        </div>`).join('')}
+        <div style="font-size:11px;color:#444;margin-top:8px">El descuento es relativamente estable (8–14%). El ROI no depende del % de descuento sino del precio base del ítem.</div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:#555;margin-bottom:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em">MLB — Descuento promedio por precio (más alto)</div>
+        ${[['$0–35',19.2],['$35–170',19.9],['$170–500',16.1],['$500+',19.9]].map(([r,d])=>`
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <div style="width:70px;font-size:11px;color:#777;text-align:right">${r}</div>
+          <div style="flex:1;background:#1a1a1a;border-radius:3px;height:18px;position:relative;overflow:hidden">
+            <div style="height:18px;width:${d*3}%;background:#3483fa;opacity:.7;border-radius:3px"></div>
+            <div style="position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:10px;font-weight:700;color:#f0f0f0">${d}%</div>
+          </div>
+        </div>`).join('')}
+        <div style="font-size:11px;color:#444;margin-top:8px">MLB aplica ~20% de descuento sistemáticamente. En ítems de bajo precio ($5–20) ese % genera un costo absoluto inviable para el ROI.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /tab-items -->
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB: AUDIENCIAS
+════════════════════════════════════════════════════════════ -->
+<div id="tab-audience" class="tab-content">
+
+  <!-- HEADLINE STATS -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px">
+    <div style="background:#0d0d0d;border:1px solid #222;border-radius:12px;padding:20px;text-align:center">
+      <div style="font-size:36px;font-weight:900;color:#00a650;line-height:1">70%</div>
+      <div style="font-size:11px;color:#555;margin-top:6px;text-transform:uppercase;letter-spacing:.08em;font-weight:700">Nuevos compradores MLA</div>
+      <div style="font-size:11px;color:#444;margin-top:4px">Primeros en comprar a ese seller</div>
+    </div>
+    <div style="background:#0d0d0d;border:1px solid #222;border-radius:12px;padding:20px;text-align:center">
+      <div style="font-size:36px;font-weight:900;color:#3483fa;line-height:1">82%</div>
+      <div style="font-size:11px;color:#555;margin-top:6px;text-transform:uppercase;letter-spacing:.08em;font-weight:700">Nuevos compradores MLB</div>
+      <div style="font-size:11px;color:#444;margin-top:4px">El cupón adquiere nuevos clientes</div>
+    </div>
+    <div style="background:#0d0d0d;border:1px solid #222;border-radius:12px;padding:20px;text-align:center">
+      <div style="font-size:36px;font-weight:900;color:#ffe600;line-height:1">283K</div>
+      <div style="font-size:11px;color:#555;margin-top:6px;text-transform:uppercase;letter-spacing:.08em;font-weight:700">Compradores únicos MLA</div>
+      <div style="font-size:11px;color:#444;margin-top:4px">LTV mes: $86 USD promedio</div>
+    </div>
+    <div style="background:#0d0d0d;border:1px solid #222;border-radius:12px;padding:20px;text-align:center">
+      <div style="font-size:36px;font-weight:900;color:#a855f7;line-height:1">2.5M</div>
+      <div style="font-size:11px;color:#555;margin-top:6px;text-transform:uppercase;letter-spacing:.08em;font-weight:700">Compradores únicos MLB</div>
+      <div style="font-size:11px;color:#444;margin-top:4px">LTV mes: $83 USD promedio</div>
+    </div>
+  </div>
+
+  <!-- NEW VS RECURRING + MULTI-PURCHASE -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+
+    <div class="card">
+      <div class="card-header"><span class="card-title">Nuevos vs recurrentes en el seller</span></div>
+      <div style="padding:24px">
+        <div style="margin-bottom:24px">
+          <div style="font-size:11px;color:#555;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">🇦🇷 MLA — 290,912 compradores</div>
+          <div style="display:flex;height:32px;border-radius:6px;overflow:hidden;margin-bottom:6px">
+            <div style="width:69.9%;background:#00a650;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#000">69.9% Nuevos</div>
+            <div style="width:30.1%;background:#444;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#f0f0f0">30.1%</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;color:#555">
+            <span>203,208 compradores nuevos para el seller</span>
+            <span>87,704 recurrentes</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:#555;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">🇧🇷 MLB — 2,609,442 compradores</div>
+          <div style="display:flex;height:32px;border-radius:6px;overflow:hidden;margin-bottom:6px">
+            <div style="width:82.2%;background:#3483fa;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff">82.2% Nuevos</div>
+            <div style="width:17.8%;background:#444;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#f0f0f0">17.8%</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;color:#555">
+            <span>2,146,111 compradores nuevos para el seller</span>
+            <span>463,331 recurrentes</span>
+          </div>
+        </div>
+        <div style="margin-top:20px;padding:14px;background:#111;border-radius:8px;font-size:12px;color:#666;line-height:1.7">
+          <strong style="color:#00a650">Argumento para el comercial:</strong> El cupón no sólo genera ventas incrementales — activamente trae nuevos clientes al seller. En MLA, 7 de cada 10 compradores no habían comprado en ese seller antes. En MLB, 8 de cada 10.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="card-title">Multi-purchase: compradores que volvieron</span></div>
+      <div style="padding:24px">
+        <div style="margin-bottom:20px">
+          <div style="font-size:11px;color:#555;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">🇦🇷 MLA — Distribución de órdenes por comprador</div>
+          ${[
+            ['1 orden','188,621','66.6%','$85.84','#555'],
+            ['2 órdenes','50,876','18.0%','$83.34','#7db8ff'],
+            ['3 órdenes','18,173','6.4%','$79.36','#a855f7'],
+            ['4+ órdenes','25,512','9.0%','$99.27','#00a650'],
+          ].map(([label,n,pct,ltv,color])=>`
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <div style="width:80px;font-size:11px;color:#777;text-align:right">${label}</div>
+            <div style="flex:1;background:#1a1a1a;border-radius:3px;height:20px;position:relative;overflow:hidden">
+              <div style="height:20px;width:${pct};background:${color};opacity:.7;border-radius:3px"></div>
+              <div style="position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:10px;font-weight:700;color:#f0f0f0">${pct} · ${n}</div>
+            </div>
+            <div style="width:60px;font-size:10px;color:#555;text-align:right">LTV ${ltv}</div>
+          </div>`).join('')}
+        </div>
+        <div>
+          <div style="font-size:11px;color:#555;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">🇧🇷 MLB — Distribución de órdenes por comprador</div>
+          ${[
+            ['1 orden','1,906,662','75.6%','$71.22','#555'],
+            ['2 órdenes','411,474','16.3%','$104.09','#7db8ff'],
+            ['3 órdenes','106,608','4.2%','$138.59','#a855f7'],
+            ['4+ órdenes','98,019','3.9%','$174.43','#00a650'],
+          ].map(([label,n,pct,ltv,color])=>`
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <div style="width:80px;font-size:11px;color:#777;text-align:right">${label}</div>
+            <div style="flex:1;background:#1a1a1a;border-radius:3px;height:20px;position:relative;overflow:hidden">
+              <div style="height:20px;width:${pct};background:${color};opacity:.7;border-radius:3px"></div>
+              <div style="position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:10px;font-weight:700;color:#f0f0f0">${pct} · ${n}</div>
+            </div>
+            <div style="width:60px;font-size:10px;color:#555;text-align:right">LTV ${ltv}</div>
+          </div>`).join('')}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CVR BY NSE -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+
+    <div class="card">
+      <div class="card-header"><span class="card-title">CVR y ROI por segmento NSE — MLA</span></div>
+      <div class="tw">
+      <table>
+        <thead><tr><th>Segmento</th><th class="r">Compradores</th><th class="r">CVR</th><th class="r">NMV (USD)</th><th class="r">ROI</th></tr></thead>
+        <tbody>
+        ${[
+          ['HIGH','8,554','2.54%','$422K','109x','#00a650'],
+          ['MID HIGH','21,772','1.78%','$978K','92x','#7db8ff'],
+          ['MID','21,046','1.25%','$880K','83x','#ffe600'],
+          ['MID LOW','9,784','1.03%','$381K','74x','#f59e0b'],
+          ['LOW','6,557','0.70%','$229K','72x','#f23d4f'],
+        ].map(([seg,buyers,cvr,nmv,roi,color])=>`
+        <tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background=''">
+          <td style="padding:10px 14px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${color};margin-right:8px"></span><span style="font-size:12px;font-weight:700;color:#aaa">${seg}</span></td>
+          <td style="padding:10px 14px;text-align:right;font-size:12px;color:#666">${buyers}</td>
+          <td style="padding:10px 14px;text-align:right;font-size:13px;font-weight:700;color:${color}">${cvr}</td>
+          <td style="padding:10px 14px;text-align:right;font-size:12px;color:#7db8ff">${nmv}</td>
+          <td style="padding:10px 14px;text-align:right;font-size:12px;font-weight:700;color:#00a650">${roi}</td>
+        </tr>`).join('')}
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="card-title">CVR y ROI por segmento NSE — MLB</span></div>
+      <div class="tw">
+      <table>
+        <thead><tr><th>Segmento</th><th class="r">Compradores</th><th class="r">CVR</th><th class="r">NMV (USD)</th><th class="r">ROI</th></tr></thead>
+        <tbody>
+        ${[
+          ['HIGH','56,274','5.34%','$1.4M','40x','#00a650'],
+          ['MID HIGH','158,296','3.52%','$3.4M','38x','#7db8ff'],
+          ['MID','192,777','2.48%','$3.7M','39x','#ffe600'],
+          ['MID LOW','81,158','1.90%','$1.4M','41x','#f59e0b'],
+          ['LOW','91,416','1.84%','$1.6M','45x','#888'],
+        ].map(([seg,buyers,cvr,nmv,roi,color])=>`
+        <tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background=''">
+          <td style="padding:10px 14px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${color};margin-right:8px"></span><span style="font-size:12px;font-weight:700;color:#aaa">${seg}</span></td>
+          <td style="padding:10px 14px;text-align:right;font-size:12px;color:#666">${buyers}</td>
+          <td style="padding:10px 14px;text-align:right;font-size:13px;font-weight:700;color:${color}">${cvr}</td>
+          <td style="padding:10px 14px;text-align:right;font-size:12px;color:#7db8ff">${nmv}</td>
+          <td style="padding:10px 14px;text-align:right;font-size:12px;font-weight:700;color:#00a650">${roi}</td>
+        </tr>`).join('')}
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- SELLER SEGMENT -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">NMV Incremental por tipo de seller</span>
+      <span class="card-sub">Fuente: BT_MKP_BENEFITS_UPLIFT_SESSIONS_METRICS_DLY · Método APROX</span>
+    </div>
+    <div class="tw">
+    <table>
+      <thead><tr><th>Site</th><th>Segmento Seller</th><th class="r">NMV Generado</th><th class="r">NMV Incremental</th><th class="r">% Incremental</th></tr></thead>
+      <tbody>
+      ${[
+        ['MLA','SD ASESORADO','$49.7M','$26.1M','52.5%'],
+        ['MLA','ASESORADO PF','$20.8M','$13.8M','66.1%'],
+        ['MLA','SD NO ASESORADO','$27.8M','$12.1M','43.4%'],
+        ['MLB','SD NO ASESORADO','$192.7M','$127.8M','66.3%'],
+        ['MLB','ASESORADO PF','$116.7M','$78.7M','67.4%'],
+        ['MLB','SD ASESORADO','$121.0M','$66.4M','54.9%'],
+      ].map(([site,seg,gen,incr,pct])=>{
+        const siteColor=site==='MLA'?'#e6a817':'#3483fa';
+        const pctNum=parseFloat(pct);
+        return `<tr style="border-bottom:1px solid #1a1a1a" onmouseenter="this.style.background='rgba(255,255,255,.02)'" onmouseleave="this.style.background=''">
+          <td style="padding:10px 14px"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:${siteColor};margin-right:6px"></span><span style="font-size:12px;color:#aaa">${site}</span></td>
+          <td style="padding:10px 14px;font-size:12px;font-weight:700;color:#f0f0f0">${seg}</td>
+          <td style="padding:10px 14px;text-align:right;font-size:12px;color:#7db8ff">${gen}</td>
+          <td style="padding:10px 14px;text-align:right;font-size:13px;font-weight:700;color:#00a650">${incr}</td>
+          <td style="padding:10px 14px;text-align:right">
+            <div style="display:flex;align-items:center;gap:8px;justify-content:flex-end">
+              <div style="width:80px;background:#1a1a1a;border-radius:3px;height:14px;overflow:hidden">
+                <div style="height:14px;width:${pctNum}%;background:${pctNum>=60?'#00a650':pctNum>=50?'#ffe600':'#f59e0b'};opacity:.8"></div>
+              </div>
+              <span style="font-size:12px;font-weight:700;color:${pctNum>=60?'#00a650':pctNum>=50?'#ffe600':'#f59e0b'}">${pct}</span>
+            </div>
+          </td>
+        </tr>`;
+      }).join('')}
+      </tbody>
+    </table>
+    </div>
+    <div style="padding:14px 24px;border-top:1px solid #1a1a1a;font-size:11px;color:#444">
+      "ASESORADO PF" tiene el mayor % incremental en MLA (66.1%) y MLB (67.4%). Los sellers asesorados están mejor calibrados — confirma que el acompañamiento comercial mejora el rendimiento del cupón.
+    </div>
+  </div>
+
+  <!-- AUDIENCE TAKEAWAY -->
+  <div style="background:#0d0d0d;border:1px solid #222;border-radius:12px;padding:24px;border-left:4px solid #00a650;margin-top:4px">
+    <div style="font-size:13px;font-weight:800;color:#00a650;margin-bottom:14px">El cupón como herramienta de adquisición de clientes — números concretos</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+      <div style="font-size:12px;color:#666;line-height:1.7">
+        <strong style="color:#f0f0f0">Adquisición.</strong> 203K compradores nuevos para sellers en MLA, 2.1M en MLB. Esto no es un dato de marketing — es una venta real registrada en BT_MKP_ORDER_COUPONS. El cupón funciona como puerta de entrada a nuevos sellers.
+      </div>
+      <div style="font-size:12px;color:#666;line-height:1.7">
+        <strong style="color:#f0f0f0">Retención temprana.</strong> 33% de compradores MLA y 24% de MLB volvieron a comprar en el mismo mes. Los compradores de 4+ órdenes en MLB tienen LTV 2.4x mayor ($174 vs $71). El cupón no solo cierra una venta — activa un patrón de compra.
+      </div>
+      <div style="font-size:12px;color:#666;line-height:1.7">
+        <strong style="color:#f0f0f0">Segmentación de audiencia.</strong> NSE High tiene CVR 2.54% (MLA) y 5.34% (MLB) — el doble del segmento Low. Para sellers que apuntan a compradores premium, el cupón tiene mayor tasa de conversión y mayor ROI. Dato para segmentar campañas futuras.
+      </div>
+    </div>
+  </div>
+
+</div><!-- /tab-audience -->
 
 <!-- ══════════════════════════════════════════════════════════
      TAB: CONCLUSIONES
